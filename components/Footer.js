@@ -71,12 +71,16 @@ export default function Footer() {
           width: 100%;
         }
 
+        .logo_footer {
+          margin-left: 30px;
+        }
+
         footer h4 {
           margin-top: 0;
         }
 
         .footer-gp {
-          margin: 50px 50px 20px 0;
+          margin: 50px 50px 20px;
         }
       }
     `}
