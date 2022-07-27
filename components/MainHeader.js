@@ -20,7 +20,7 @@ export default function MainHeader() {
 
     .header-logo {
       margin: 30px 0 30px 0;
-      width: 15vw;
+      width: 200px;
     }
     `}
   </style>

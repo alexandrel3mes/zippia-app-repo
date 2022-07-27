@@ -160,7 +160,7 @@ export default function Home( jobs ) {
           font-weight: 600;
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 600px) {
           .filter-btns {
             align-items: center;
             display: flex;
@@ -206,7 +206,7 @@ export default function Home( jobs ) {
           }
         } 
 
-        @media (min-width: 400px) {
+        @media (min-width: 600px) {
           .grid {
             width: 100%;
             flex-direction: column;
