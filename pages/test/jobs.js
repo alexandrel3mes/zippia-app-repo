@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { useState } from 'react';
+import ReactModal from 'react-modal';
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import MainHeader from '../../components/MainHeader'
@@ -8,6 +9,49 @@ import JobCard from '../../components/JobCard'
 
 export default function Home( jobs ) {
   const [companyName, setCompanyName] = useState('');
+  const [companies, setCompanies] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [allJobs, setAll] = useState(jobs);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const closeAndSet = (event) => {
+    const compName = event.target.innerText;
+    const newComp = jobs.jobs.filter((job) => job.companyName === compName);
+    setCompanies(newComp)
+    setCompanyName(newComp[0].companyName)
+    closeModal();
+  }
+
+  const mostRecent = () => {
+    const thatContainHours = jobs.jobs.filter((job) => job.postedDate.includes('h'))
+    const thatContainDays = jobs.jobs.filter((job) => job.postedDate.includes('d'))
+    const filtered = thatContainDays.filter((job) => {
+      return job.postedDate === '1d ago' ||
+      job.postedDate === '2d ago' ||
+      job.postedDate === '3d ago' ||
+      job.postedDate === '4d ago' ||
+      job.postedDate === '5d ago' ||
+      job.postedDate === '6d ago' ||
+      job.postedDate === '7d ago'
+    })
+    const newCompanies = [...thatContainHours, ...filtered]
+    setCompanies(newCompanies);
+  }
+
+  const resetFilters = () => {
+    setCompanies([])
+    setCompanyName('')
+  }
 
   return (
     <div className="container">
@@ -21,19 +65,38 @@ export default function Home( jobs ) {
       <main>
 
         <section>
-        <button>
+        <ReactModal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        >
+          <span onClick={closeModal}>X</span>
+
+          {
+            jobs.jobs.map((job) => 
+            <button onClick={closeAndSet} key={job.jobId}>{job.companyName}</button>
+          )
+          }
+        </ReactModal>
+        <button
+          onClick={openModal}
+        >
           {
             companyName === '' ? 'All companies' : companyName
           }
         </button>
-        <button>Only the most recent</button>
+        <button onClick={mostRecent}>Only the most recent</button>
+        <button onClick={resetFilters}>Reset Filters</button>
         </section>
 
         <section>
-        { 
-         jobs.jobs.map((job) => 
-          <JobCard key={job.jobId} job={job} />
+        {
+          companies.length === 0 ?
+          jobs.jobs.map((job) => 
+            <JobCard key={job.jobId} job={job} />
         )
+          : companies.map((company) =>
+            <JobCard key={company.jobId} job={company} />)
         }
         </section>
       </main>

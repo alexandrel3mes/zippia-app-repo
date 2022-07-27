@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function JobCard( props ) {
-  const { jobTitle, companyName, jobDescription, location, estimatedSalary, companyInitial } = props.job;
+  const { jobTitle, companyName, jobDescription, postedDate, location, estimatedSalary, companyInitial } = props.job;
   const onlyTheCode = jobDescription.slice(1, -1);
   console.log(props.job);
 
@@ -20,6 +20,7 @@ export default function JobCard( props ) {
         <p>{companyName}</p>
         <p>{location}</p>
         <p>{estimatedSalary}</p>
+        <p>{postedDate}</p>
         <div
           className={`${visibility}`}
           dangerouslySetInnerHTML={
