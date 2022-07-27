@@ -2,7 +2,7 @@ export default function MainHeader() {
   return (
     <>
     <header className="header">
-      <img className="header-logo" src="/zippia-logo.png" alt="Zippia Logo" />
+      <img className="header-logo" src="/logo_white.svg" alt="Zippia Logo" />
     </header>
 
   <style jsx global>{`
@@ -10,6 +10,7 @@ export default function MainHeader() {
     margin: 0
   }
     .header {
+      background-color: rgb(40,40,40);
       box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.2);
       display: flex;
       justify-content: center;
@@ -18,7 +19,8 @@ export default function MainHeader() {
     }
 
     .header-logo {
-      width: 20vh;
+      margin: 30px 0 30px 0;
+      width: 15vw;
     }
     `}
   </style>

@@ -155,6 +155,11 @@ export default function Home( jobs ) {
           margin-top: 3rem;
         }
 
+        button {
+          font-size: large;
+          font-weight: 600;
+        }
+
         @media (max-width: 400px) {
           .filter-btns {
             align-items: center;

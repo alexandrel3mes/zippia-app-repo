@@ -27,7 +27,13 @@ export default function Footer() {
 
         <div className="footer-gp">
           <span className="footer-p">Email: </span><span className="footer-title">support@zippia.com</span>
-          <p className="footer-p">Copyright © 2022 Zippia, Inc.</p>
+          <p className="footer-p">Zippia Clone made by <span className="footer-title">Alexandre Lemes</span></p>
+          <a href="https://github.com/alexandrel3mes" target="_blank">
+            <img src="/logo-github.png" alt="GitHub Logo" className="lower-logos" />
+          </a>
+          <a href="https://www.linkedin.com/in/alexandrelemes/" target="_blank">
+            <img src="/logo-linkedin.png" alt="LinkedIn Logo" className="lower-logos" />
+          </a>
         </div>
       </footer>
       
@@ -42,7 +48,11 @@ export default function Footer() {
 
         .footer-p {
           color: rgb(170, 170, 170);
-          cursor: pointer;
+        }
+
+        .lower-logos {
+          width: 50px;
+          margin: 0 10px 0 10px;
         }
 
         @media (max-width: 800px) {
