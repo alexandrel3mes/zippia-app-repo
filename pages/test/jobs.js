@@ -11,6 +11,8 @@ export default function Home( jobs ) {
   const [companyName, setCompanyName] = useState('');
   const [companies, setCompanies] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [recentBtnActive, setRecentBtnActive] = useState('unactive');
+  const [companyBtnActive, setCompanyBtnActive] = useState('unactive');
   const [allJobs, setAll] = useState(jobs);
 
   function openModal() {
@@ -29,6 +31,7 @@ export default function Home( jobs ) {
     const newComp = jobs.jobs.filter((job) => job.companyName === compName);
     setCompanies(newComp)
     setCompanyName(newComp[0].companyName)
+    setCompanyBtnActive('active')
     closeModal();
   }
 
@@ -46,12 +49,29 @@ export default function Home( jobs ) {
     })
     const newCompanies = [...thatContainHours, ...filtered]
     setCompanies(newCompanies);
+    setRecentBtnActive('active');
+    setCompanyName('');
+    setCompanyBtnActive('unactive');
   }
 
   const resetFilters = () => {
     setCompanies([])
     setCompanyName('')
+    setCompanyBtnActive('unactive')
+    setRecentBtnActive('unactive')
   }
+
+  const customStyles = {
+    content: {
+      display: 'flex',
+      top: '50%',
+      left: '50%',
+      right: '30%',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)'
+    },
+  };
 
   return (
     <div className="container">
@@ -64,29 +84,32 @@ export default function Home( jobs ) {
 
       <main>
 
-        <section>
+        <section className='filter-btns'>
         <ReactModal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
+        style={customStyles}
         >
-          <span onClick={closeModal}>X</span>
-
+          <span className='closebtn' onClick={closeModal}>X</span>
+          <div className='companies'>
           {
             jobs.jobs.map((job) => 
-            <button onClick={closeAndSet} key={job.jobId}>{job.companyName}</button>
-          )
+            <button className='unactive company' onClick={closeAndSet} key={job.jobId}>{job.companyName}</button>
+            )
           }
+          </div>
         </ReactModal>
         <button
           onClick={openModal}
+          className={companyBtnActive}
         >
           {
             companyName === '' ? 'All companies' : companyName
           }
         </button>
-        <button onClick={mostRecent}>Only the most recent</button>
-        <button onClick={resetFilters}>Reset Filters</button>
+        <button className={recentBtnActive} onClick={mostRecent}>Only the most recent</button>
+        <button className='unactive' onClick={resetFilters}>Reset Filters</button>
         </section>
 
         <section>
@@ -122,66 +145,6 @@ export default function Home( jobs ) {
           align-items: center;
         }
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
         .grid {
           display: flex;
           align-items: center;
@@ -192,44 +155,139 @@ export default function Home( jobs ) {
           margin-top: 3rem;
         }
 
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
+        @media (max-width: 400px) {
+          .filter-btns {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 10vw;
+            width: 100%;
+          }
 
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
+          .filter-btns button {
+            margin: 0 5vw 5vw 5vw;
+            width: 100%
+          }
 
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
+          .unactive {
+            color: rgb(88, 142, 241);
+            background: none;
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
+  
+          .active {
+            color: white;
+            background: rgb(88, 142, 241);
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
 
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
+          .closebtn {
+            margin: 0px 30px 0 0 ;
+          }
 
-        .logo {
-          height: 1em;
-        }
+          .companies {
+            display: flex;
+          }
 
-        @media (max-width: 600px) {
+          .company {
+            margin-right: 10px;
+          }
+        } 
+
+        @media (min-width: 400px) {
           .grid {
             width: 100%;
             flex-direction: column;
+          }
+
+          .filter-btns {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+          }
+
+          .filter-btns button {
+            margin: 0 5vw 5vw 5vw;
+          }
+
+          .unactive {
+            color: rgb(88, 142, 241);
+            background: none;
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
+  
+          .active {
+            color: white;
+            background: rgb(88, 142, 241);
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
+
+          .closebtn {
+            margin: 0px 30px 0 0 ;
+          }
+
+          .companies {
+            display: flex;
+          }
+
+          .company {
+            margin-right: 10px;
+          }
+
+        }
+
+        @media (min-width: 800px) {
+          .filter-btns {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+          }
+
+          .filter-btns button {
+            margin: 0 30px 40px 0;
+          }
+
+          .unactive {
+            color: rgb(88, 142, 241);
+            background: none;
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
+  
+          .active {
+            color: white;
+            background: rgb(88, 142, 241);
+            border: 1px solid rgb(88, 142, 241);
+            border-radius: 5px;
+            padding: 15px;
+            transition: 200ms;
+          }
+
+          .closebtn {
+            margin: 0px 30px 0 0 ;
+          }
+
+          .companies {
+            display: flex;
+          }
+
+          .company {
+            margin-right: 10px;
           }
         }
       `}</style>

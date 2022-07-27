@@ -48,10 +48,14 @@ export default function JobCard( props ) {
           background-color: #${Math.floor(Math.random()*16777215).toString(16)};
         }
 
+        .job-card {
+          border-radius: 10px;
+        }
+
         @media (max-width: 800px) {
           .job-card {
             align-items: center;
-            box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.2);
+            box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             text-align: left;
@@ -78,7 +82,7 @@ export default function JobCard( props ) {
         @media (min-width: 800px) {
           .job-card {
             align-items: center;
-            box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.2);
+            box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             text-align: left;
