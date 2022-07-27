@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import MainHeader from '../../components/MainHeader'
+import JobCard from '../../components/JobCard'
 
 
 export default function Home( jobs ) {
@@ -15,7 +16,11 @@ export default function Home( jobs ) {
       <MainHeader />
 
       <main>
-        
+        { 
+         jobs.jobs.map((job) => 
+          <JobCard key={job.jobId} job={job} />
+        )
+        }
       </main>
 
       <Footer />
@@ -179,7 +184,7 @@ export const getServerSideProps = async () => {
       fetchJobDesc: true,
       jobTitle: "Business Analyst",
       locations: [],
-      numJobs: 40,
+      numJobs: 10,
       previousListingHashes: []
       }),
       headers: new Headers({
@@ -193,7 +198,7 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      jobs: data
+      jobs: data.jobs
     }
   }
 }
