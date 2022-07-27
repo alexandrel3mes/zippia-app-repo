@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function JobCard( props ) {
-  const { jobTitle, companyName, jobDescription, postedDate, location, estimatedSalary, companyInitial } = props.job;
+  const { jobTitle, companyName, jobDescription, postedDate, location, estimatedSalary, companyLogo, companyInitial, jobLevels, OBJurl } = props.job;
   const onlyTheCode = jobDescription.slice(1, -1);
   console.log(props.job);
 
@@ -15,12 +15,19 @@ export default function JobCard( props ) {
   return (
     <>
       <div className="job-card">
-        <p className="comp-icon">{companyInitial}</p>
+        { !companyLogo ? <p className="comp-init">{companyInitial}</p> : <img src={companyLogo} className="comp-icon" />}
+        
         <h3>{jobTitle}</h3>
         <p>{companyName}</p>
         <p>{location}</p>
+        <div>
+          {jobLevels.map((level) => (
+            <p>{level}</p>
+          ))}
+        </div>
         <p>{estimatedSalary}</p>
         <p>{postedDate}</p>
+        <a href={OBJurl} target="_blank">Apply Now!</a>
         <div
           className={`${visibility}`}
           dangerouslySetInnerHTML={
@@ -42,10 +49,6 @@ export default function JobCard( props ) {
 
         ul {
           list-style-type: none;
-        }
-
-        .comp-icon {
-          background-color: #${Math.floor(Math.random()*16777215).toString(16)};
         }
 
         .job-card {
@@ -87,7 +90,7 @@ export default function JobCard( props ) {
             flex-direction: column;
             text-align: left;
             margin: 0 0 50px 0;
-            width: 90vw;
+            width: 30vw;
           }
 
           .hide {
