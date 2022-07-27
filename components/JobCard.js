@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 export default function JobCard( props ) {
-  const { jobTitle, companyName, jobDescription} = props.job;
+  const { jobTitle, companyName, jobDescription, location, estimatedSalary, companyInitial } = props.job;
   const onlyTheCode = jobDescription.slice(1, -1);
   console.log(props.job);
+
+  const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
 
   const [visibility, setVisibility]= useState('hide')
 
@@ -13,8 +15,11 @@ export default function JobCard( props ) {
   return (
     <>
       <div className="job-card">
+        <p className="comp-icon">{companyInitial}</p>
         <h3>{jobTitle}</h3>
         <p>{companyName}</p>
+        <p>{location}</p>
+        <p>{estimatedSalary}</p>
         <div
           className={`${visibility}`}
           dangerouslySetInnerHTML={
@@ -38,6 +43,10 @@ export default function JobCard( props ) {
           list-style-type: none;
         }
 
+        .comp-icon {
+          background-color: #${Math.floor(Math.random()*16777215).toString(16)};
+        }
+
         @media (max-width: 800px) {
           .job-card {
             align-items: center;
@@ -51,12 +60,17 @@ export default function JobCard( props ) {
 
           .hide {
             display: none;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
           }
 
           .job-desc {
             display: flex;
             flex-direction: column;
             text-align: center;
+            visibility: visible;
+            opacity: 1;
           }
         }
 

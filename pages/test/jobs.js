@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { useState } from 'react';
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import MainHeader from '../../components/MainHeader'
@@ -6,6 +7,8 @@ import JobCard from '../../components/JobCard'
 
 
 export default function Home( jobs ) {
+  const [companyName, setCompanyName] = useState('');
+
   return (
     <div className="container">
       <Head>
@@ -16,11 +19,23 @@ export default function Home( jobs ) {
       <MainHeader />
 
       <main>
+
+        <section>
+        <button>
+          {
+            companyName === '' ? 'All companies' : companyName
+          }
+        </button>
+        <button>Only the most recent</button>
+        </section>
+
+        <section>
         { 
          jobs.jobs.map((job) => 
           <JobCard key={job.jobId} job={job} />
         )
         }
+        </section>
       </main>
 
       <Footer />
