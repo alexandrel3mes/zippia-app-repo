@@ -1,17 +1,26 @@
+import { GetServerSideProps } from 'next';
 import Head from 'next/head'
 
-export default function Home() {
+import TestComponent from '../components/Test';
+
+export default function Home( jobs ) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Zippia</title>
+        <link rel="icon" href="/zippia.ico" />
       </Head>
+
+      <header>
+        {/* Header here */}
+      </header>
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Learn <a href="https://nextjs.org">Next.js!</a>
         </h1>
+        <TestComponent />
+        <h1>{console.log(jobs)}</h1>
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
@@ -49,13 +58,14 @@ export default function Home() {
       </main>
 
       <footer>
+        {/* footer here */}
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
+          <img src="/zippia.svg" alt="Zippia Logo" className="logo" />
         </a>
       </footer>
 
@@ -206,4 +216,32 @@ export default function Home() {
       `}</style>
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  const requestOptions = {
+    method: 'POST',
+    body: JSON.stringify({
+      companySkills: true,
+      dismissedListingHashes: [],
+      fetchJobDesc: true,
+      jobTitle: "Business Analyst",
+      locations: [],
+      numJobs: 40,
+      previousListingHashes: []
+      }),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+  };
+
+  const response = await fetch('https://www.zippia.com/api/jobs/', requestOptions);
+  const data = await response.json();
+
+  return {
+    props: {
+      jobs: data
+    }
+  }
 }
