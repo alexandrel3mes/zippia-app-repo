@@ -23,9 +23,9 @@ export default function JobCard( props ) {
           <p>{companyName}</p>
           <p className="p-small">{location}</p>
           <div className="level-div">
-            {jobLevels.map((level) => (
-              <p className="level">{level}</p>
-            ))}
+              {jobLevels.map((level) => (
+                <p className="level">{level}</p>
+              ))}
           </div>
           <p className="p-small">{estimatedSalary}</p>
           <p className="p-small">{postedDate}</p>
@@ -39,7 +39,7 @@ export default function JobCard( props ) {
           </div>
       <p onClick={showOrHideDescription} className="show-btn">
         {
-          visibility === 'hide' ? 'Show Job Description' : 'Hide Job Description'
+          visibility === 'hide' ? 'Show Job Description ⬇️' : 'Hide Job Description ⬆️'
         }
       </p>
       </div>
@@ -48,10 +48,6 @@ export default function JobCard( props ) {
       <style jsx global>{`
         body {
           margin: 0
-        }
-
-        ul {
-          list-style-type: none;
         }
 
         .job-card {
@@ -66,6 +62,11 @@ export default function JobCard( props ) {
         .p-small {
           font-size: medium;
           font-weight: 300;
+          padding-bottom: 20px;
+        }
+
+        .show-btn {
+          padding-top: 20px;
         }
 
         .level {
@@ -80,8 +81,9 @@ export default function JobCard( props ) {
           text-decoration: none;
           color: white;
           background: rgb(88, 142, 241);
-          padding: 20px;
-          margin: 20px 0 20px 0;
+          border-radius: 5px;
+          padding: 10px;
+          margin-top: 20px;
         }
 
           .job-card {
@@ -90,8 +92,9 @@ export default function JobCard( props ) {
             display: flex;
             flex-direction: column;
             text-align: left;
+            padding: 20px;
             margin: 0 0 50px 0;
-            width: 45vw;
+            width: 50vw;
           }
 
           .title {
@@ -126,6 +129,32 @@ export default function JobCard( props ) {
             display: flex;
             flex-direction: column;
             text-align: left;
+          }
+
+          @media (min-width: 800px) {
+            .job-card {
+              width: 45vw;
+            }
+          }
+
+          @media (max-width: 800px) {
+            .job-card {
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              width: 90vw;
+            }
+
+            .level {
+              align-self: center;
+              margin: 0px;
+            }
+
+            .level-div {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
           }
     `}
   </style>
