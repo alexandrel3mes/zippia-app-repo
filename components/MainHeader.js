@@ -2,7 +2,7 @@ export default function MainHeader() {
   return (
     <>
     <header className="header">
-      <img className="header-logo" src="/logo_white.svg" alt="Zippia Logo" />
+      <img onClick={() => window.location.reload(false)} className="header-logo" src="/logo_white.svg" alt="Zippia Logo" />
     </header>
 
   <style jsx global>{`
@@ -20,6 +20,7 @@ export default function MainHeader() {
 
     .header-logo {
       margin: 30px 0 30px 0;
+      cursor: pointer;
       width: 200px;
     }
     `}

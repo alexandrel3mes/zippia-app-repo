@@ -2,7 +2,9 @@ export default function Footer() {
   return (
     <>
       <footer className="footer">
-        <img src="/logo_footer.svg" alt="Zippia Logo" className="logo_footer footer-gp" />
+        <a target="_blank" href="https://www.zippia.com/">
+          <img src="/logo_footer.svg" alt="Zippia Logo" className="logo_footer footer-gp" />
+        </a>
 
         <div className="footer-gp">
           <h4 className="footer-title">ZIPPIA</h4>
