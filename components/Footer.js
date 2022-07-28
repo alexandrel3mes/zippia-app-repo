@@ -29,7 +29,7 @@ export default function Footer() {
           <span className="footer-p">Email: </span><span className="footer-title">support@zippia.com</span>
           <p className="footer-p">Zippia Clone made by <span className="footer-title">Alexandre Lemes</span></p>
           <a href="https://github.com/alexandrel3mes" target="_blank">
-            <img src="/logo-github.png" alt="GitHub Logo" className="lower-logos" />
+            <img src="/logo-github.png" alt="GitHub Logo" className="gh-logo lower-logos" />
           </a>
           <a href="https://www.linkedin.com/in/alexandrelemes/" target="_blank">
             <img src="/logo-linkedin.png" alt="LinkedIn Logo" className="lower-logos" />
@@ -44,6 +44,12 @@ export default function Footer() {
 
         .footer-title {
           color: rgb(255, 255, 255);
+        }
+
+        .gh-logo {
+          background-color: white;
+          border: none;
+          border-radius: 100%;
         }
 
         .footer-p {
