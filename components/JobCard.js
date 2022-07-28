@@ -15,31 +15,34 @@ export default function JobCard( props ) {
   return (
     <>
       <div className="job-card">
-        { !companyLogo ? <p className="comp-init">{companyInitial}</p> : <img src={companyLogo} className="comp-icon" />}
-        
-        <h3>{jobTitle}</h3>
-        <p>{companyName}</p>
-        <p>{location}</p>
         <div>
-          {jobLevels.map((level) => (
-            <p>{level}</p>
-          ))}
-        </div>
-        <p>{estimatedSalary}</p>
-        <p>{postedDate}</p>
-        <a href={OBJurl} target="_blank">Apply Now!</a>
-        <div
-          className={`${visibility}`}
-          dangerouslySetInnerHTML={
-            {__html:onlyTheCode}
-          }
-        >
-        </div>
+          <div className="title">
+            { !companyLogo ? <p className="comp-init aside-icon">{companyInitial}</p> : <img src={companyLogo} className="comp-icon aside-icon" />} 
+            <h3>{jobTitle}</h3>
+          </div>
+          <p>{companyName}</p>
+          <p className="p-small">{location}</p>
+          <div className="level-div">
+            {jobLevels.map((level) => (
+              <p className="level">{level}</p>
+            ))}
+          </div>
+          <p className="p-small">{estimatedSalary}</p>
+          <p className="p-small">{postedDate}</p>
+          <a className="apply-btn" href={OBJurl} target="_blank">Apply Now!</a>
+          <div
+            className={`${visibility}`}
+            dangerouslySetInnerHTML={
+              {__html:onlyTheCode}
+            }
+          >
+          </div>
       <p onClick={showOrHideDescription} className="show-btn">
         {
           visibility === 'hide' ? 'Show Job Description' : 'Hide Job Description'
         }
       </p>
+      </div>
       </div>
       
       <style jsx global>{`
@@ -55,34 +58,32 @@ export default function JobCard( props ) {
           border-radius: 10px;
         }
 
-        @media (max-width: 800px) {
-          .job-card {
-            align-items: center;
-            box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            margin: 0 0 50px 0;
-            width: 90vw;
-          }
-
-          .hide {
-            display: none;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0s, opacity 0.5s linear;
-          }
-
-          .job-desc {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            visibility: visible;
-            opacity: 1;
-          }
+        h3 {
+          font-size: large;
+          font-weight: 500;
         }
 
-        @media (min-width: 800px) {
+        .p-small {
+          font-size: medium;
+          font-weight: 300;
+        }
+
+        .level {
+          background: rgba(240,248,255,0.6);
+          font-size: medium;
+          font-weight: 300;
+          padding: 10px;
+          width: 50%;
+        }
+
+        .apply-btn {
+          text-decoration: none;
+          color: white;
+          background: rgb(88, 142, 241);
+          padding: 20px;
+          margin: 20px 0 20px 0;
+        }
+
           .job-card {
             align-items: center;
             box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.1);
@@ -90,7 +91,31 @@ export default function JobCard( props ) {
             flex-direction: column;
             text-align: left;
             margin: 0 0 50px 0;
-            width: 30vw;
+            width: 45vw;
+          }
+
+          .title {
+            align-items: center;
+            display: flex;
+          }
+
+
+          .comp-icon {
+            align-self: top;
+            heigth: 50px;
+            width: 100px
+          }
+
+          .comp-init {
+            align-self: top;
+            background-color: ${randomColor};
+            color: white;
+            font-size: x-large;
+            font-weight: 600;
+            heigth: 50px;
+            padding: 25px 0 25px 0;
+            text-align: center;
+            width: 100px
           }
 
           .hide {
@@ -102,7 +127,6 @@ export default function JobCard( props ) {
             flex-direction: column;
             text-align: left;
           }
-      }
     `}
   </style>
     </>
