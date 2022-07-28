@@ -8,22 +8,22 @@ export default function Footer() {
 
         <div className="footer-gp">
           <h4 className="footer-title">ZIPPIA</h4>
-          <p className="footer-p">About Us</p>
-          <p className="footer-p">Employer Services</p>
-          <p className="footer-p">Terms of Use</p>
-          <p className="footer-p">Privacy Policy</p>
-          <p className="footer-p">Contact Us</p>
+          <a href="https://www.zippia.com/about-us/" target="_blank"><p className="footer-p">About Us</p></a>
+          <a href="https://www.zippia.com/employer/" target="_blank"><p className="footer-p">Employer Services</p></a>
+          <a href="https://www.zippia.com/terms-of-use/" target="_blank"><p className="footer-p">Terms of Use</p></a>
+          <a href="https://www.zippia.com/privacy-policy/" target="_blank"><p className="footer-p">Privacy Policy</p></a>
+          <a href="https://www.zippia.com/contact-us/" target="_blank"><p className="footer-p">Contact Us</p></a>
         </div>
 
         <div className="footer-gp">
           <h4 className="footer-title">CAREERS & JOBS</h4>
-          <p className="footer-p">Careers Advice</p>
-          <p className="footer-p">Careers by Categories</p>
-          <p className="footer-p">Jobs by Location</p>
-          <p className="footer-p">College Grad Careers</p>
-          <p className="footer-p">Resume Builder</p>
-          <p className="footer-p">Job Search Q&A</p>
-          <p className="footer-p">Up and Coming Jobs</p>
+          <a href="https://www.zippia.com/advice/" target="_blank"><p className="footer-p">Careers Advice</p></a>
+          <a href="https://www.zippia.com/careers/" target="_blank"><p className="footer-p">Careers by Categories</p></a>
+          <a href="https://www.zippia.com/jobs/" target="_blank"><p className="footer-p">Jobs by Location</p></a>
+          <a href="https://www.zippia.com/colleges-and-majors/" target="_blank"><p className="footer-p">College Grad Careers</p></a>
+          <a href="https://www.zippia.com/resume-builder/?src=footer" target="_blank"> <p className="footer-p">Resume Builder</p></a>
+          <a href="https://www.zippia.com/answers/" target="_blank"><p className="footer-p">Job Search Q&A</p></a>
+          <a href="https://www.zippia.com/up-and-coming-jobs/" target="_blank"><p className="footer-p">Up and Coming Jobs</p></a>
         </div>
 
 
@@ -56,6 +56,10 @@ export default function Footer() {
 
         .footer-p {
           color: rgb(170, 170, 170);
+        }
+
+        a {
+          text-decoration: none;
         }
 
         .lower-logos {
