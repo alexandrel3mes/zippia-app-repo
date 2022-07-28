@@ -19,9 +19,6 @@ export default function Home( jobs ) {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -87,7 +84,6 @@ export default function Home( jobs ) {
         <section className='filter-btns'>
         <ReactModal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         >
@@ -315,6 +311,8 @@ export default function Home( jobs ) {
     
   )
 }
+
+/* SSR function */
 
 export const getServerSideProps = async () => {
   const requestOptions = {

@@ -2,16 +2,16 @@ import { useState } from "react";
 
 export default function JobCard( props ) {
   const { jobTitle, companyName, jobDescription, postedDate, location, estimatedSalary, companyLogo, companyInitial, jobLevels, OBJurl } = props.job;
-  const onlyTheCode = jobDescription.slice(1, -1);
-  console.log(props.job);
+  const onlyTheCode = jobDescription.slice(1, -1); /* get only the html from the api */
 
-  const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+  const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`; /* generate random color for the companies that dont have a logo */
 
   const [visibility, setVisibility]= useState('hide')
 
   const showOrHideDescription = () => {
     visibility === 'hide' ? setVisibility('job-desc') : setVisibility('hide')
   }
+
   return (
     <>
       <div className="job-card">
@@ -51,7 +51,6 @@ export default function JobCard( props ) {
         }
 
         .job-card {
-          border-radius: 10px;
         }
 
         h3 {
@@ -93,6 +92,7 @@ export default function JobCard( props ) {
           .job-card {
             align-items: center;
             box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.1);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             text-align: left;

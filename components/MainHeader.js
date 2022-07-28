@@ -2,7 +2,7 @@ export default function MainHeader() {
   return (
     <>
     <header className="header">
-      <img onClick={() => window.location.reload(false)} className="header-logo" src="/logo_white.svg" alt="Zippia Logo" />
+      <img onClick={() => window.location.reload(false)} className="header-logo" src="/logo_white.svg" alt="Zippia Logo" /> {/* On click function to reload page */}
     </header>
 
   <style jsx global>{`
