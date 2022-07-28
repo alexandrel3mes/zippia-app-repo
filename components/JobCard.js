@@ -31,7 +31,7 @@ export default function JobCard( props ) {
           <p className="p-small">{postedDate}</p>
           <a className="apply-btn" href={OBJurl} target="_blank">Apply Now!</a>
           <div
-            className={`${visibility}`}
+            className={`${visibility} `}
             dangerouslySetInnerHTML={
               {__html:onlyTheCode}
             }
@@ -58,6 +58,10 @@ export default function JobCard( props ) {
           font-size: large;
           font-weight: 500;
         }
+
+        ul {
+          list-style-type: none;
+      }
 
         .p-small {
           font-size: medium;
@@ -126,9 +130,12 @@ export default function JobCard( props ) {
           }
 
           .job-desc {
+            align-items: center;
             display: flex;
             flex-direction: column;
-            text-align: left;
+            justify-content: center;
+            text-align: justified;
+            padding-top: 30px;
           }
 
           @media (min-width: 800px) {
